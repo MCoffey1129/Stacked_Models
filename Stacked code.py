@@ -86,7 +86,7 @@ level0.append(('CB', CatBoostClassifier()))
 # define meta learner model
 level1 = XGBClassifier()
 
-# define the stacking ensemble
+# define the stacking ensemble - the stacked model is assessed using 10 cross validations
 stk_mdl = StackingClassifier(estimators=level0, final_estimator=level1, cv=10, n_jobs=-1, verbose=2)
 
 # fit the model on all available data
@@ -124,7 +124,7 @@ classifier.predict_proba(X_test)[22]
 # Original model prediction - 79% probability of Virginica and 21% probability of Versicolor
 
 stk_mdl.predict_proba(X_test)[22]
-#Stacked model prediction -  88% probability of Virginica and 11.5% probability of Versicolor
+# Stacked model prediction -  88% probability of Virginica and 11.5% probability of Versicolor
 
 """You can see from the graph below that the misclassified case looks like a Virginica
    and we would not expect the model the predict otherwise"""
